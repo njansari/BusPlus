@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-extension View {
-    func expansiveListRowStyle() -> some View {
-        listRowBackground(Color.clear).listRowInsets(EdgeInsets())
-    }
-}
-
 struct BusesView: View {
     private enum SortOrder: String, CaseIterable {
         case name

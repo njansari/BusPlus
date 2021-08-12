@@ -67,26 +67,6 @@ struct TicketView: View {
     }
 }
 
-struct CloseButton: UIViewRepresentable {
-    let action: () -> Void
-
-    init(action: @escaping () -> Void) {
-        self.action = action
-    }
-
-    func makeUIView(context: Context) -> some UIView {
-        let buttonAction = UIAction { _ in
-            action()
-        }
-
-        let button = UIButton(type: .close, primaryAction: buttonAction)
-        return button
-    }
-
-    func updateUIView(_ uiView: UIViewType, context: Context) {}
-}
-
-
 struct TicketView_Previews: PreviewProvider {
     static let ticketInformation: TicketInformation = {
         let info = TicketInformation()

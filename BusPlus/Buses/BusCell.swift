@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-struct RoundedCorners: Shape {
-    let corners: UIRectCorner
-    let radius: CGFloat
-
-    func path(in rect: CGRect) -> Path {
-        let radii = CGSize(width: radius, height: radius)
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: radii)
-        return Path(path.cgPath)
-    }
-}
-
 struct PlaceholderImage: View {
     let systemName: String
     let color: Color
@@ -49,7 +38,7 @@ struct BusCell: View {
                 }
             }
             .frame(width: frame)
-            .clipShape(RoundedCorners(corners: [.bottomRight, .topRight], radius: 10))
+            .clipShape(RoundedCornerRectangle(corners: [.bottomRight, .topRight], radius: 10))
 
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading) {

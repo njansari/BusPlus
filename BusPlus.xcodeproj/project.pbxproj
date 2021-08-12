@@ -17,6 +17,9 @@
 		BD5665B626BEE65800ABD8D7 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5665B526BEE65800ABD8D7 /* Bus.swift */; };
 		BD5665BA26BEEAAC00ABD8D7 /* BusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5665B926BEEAAC00ABD8D7 /* BusCell.swift */; };
 		BD73285626C153AC0076F887 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD73285526C153AC0076F887 /* TicketView.swift */; };
+		BD7AECCA26C5152D0068B53E /* View+ExpansiveRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AECC926C5152D0068B53E /* View+ExpansiveRowStyle.swift */; };
+		BD7AECCC26C515540068B53E /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AECCB26C515540068B53E /* CloseButton.swift */; };
+		BD7AECCF26C515B70068B53E /* RoundedCornerRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AECCE26C515B70068B53E /* RoundedCornerRectangle.swift */; };
 		BDB44FA626C0518700A91E40 /* Sequence+SortedKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB44FA526C0518700A91E40 /* Sequence+SortedKeyPath.swift */; };
 		BDB44FA826C05C8600A91E40 /* BorderedButtonToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB44FA726C05C8600A91E40 /* BorderedButtonToggleStyle.swift */; };
 		BDBC860826C3C49A00F1C6F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC860726C3C49A00F1C6F2 /* ContentView.swift */; };
@@ -35,6 +38,9 @@
 		BD5665B526BEE65800ABD8D7 /* Bus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		BD5665B926BEEAAC00ABD8D7 /* BusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusCell.swift; sourceTree = "<group>"; };
 		BD73285526C153AC0076F887 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		BD7AECC926C5152D0068B53E /* View+ExpansiveRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ExpansiveRowStyle.swift"; sourceTree = "<group>"; };
+		BD7AECCB26C515540068B53E /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		BD7AECCE26C515B70068B53E /* RoundedCornerRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerRectangle.swift; sourceTree = "<group>"; };
 		BDB44FA526C0518700A91E40 /* Sequence+SortedKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+SortedKeyPath.swift"; sourceTree = "<group>"; };
 		BDB44FA726C05C8600A91E40 /* BorderedButtonToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButtonToggleStyle.swift; sourceTree = "<group>"; };
 		BDBC860726C3C49A00F1C6F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,16 +79,10 @@
 			children = (
 				BD5665A526BEE1BF00ABD8D7 /* BusPlusApp.swift */,
 				BDBC860726C3C49A00F1C6F2 /* ContentView.swift */,
-				BD5665A726BEE1BF00ABD8D7 /* BusesView.swift */,
-				BDF35E5D26C29D8B00413734 /* LocationsFilterList.swift */,
-				BD5665B926BEEAAC00ABD8D7 /* BusCell.swift */,
-				BD5665B526BEE65800ABD8D7 /* Bus.swift */,
-				BD4D1D4B26C13DC300E08343 /* MyTicketView.swift */,
-				BD73285526C153AC0076F887 /* TicketView.swift */,
-				BD4D1D4D26C13DD900E08343 /* TicketInformation.swift */,
-				BDB44FA726C05C8600A91E40 /* BorderedButtonToggleStyle.swift */,
-				BD5665B326BEE50300ABD8D7 /* URLSession+JSONDecode.swift */,
-				BDB44FA526C0518700A91E40 /* Sequence+SortedKeyPath.swift */,
+				BD7AECC726C514ED0068B53E /* Buses */,
+				BD7AECC826C514F50068B53E /* My Ticket */,
+				BD7AECCD26C5156B0068B53E /* Custom Views */,
+				BD7AECC626C514C70068B53E /* Extensions */,
 				BD5665A926BEE1C000ABD8D7 /* Assets.xcassets */,
 				BD5665AB26BEE1C000ABD8D7 /* Preview Content */,
 			);
@@ -95,6 +95,47 @@
 				BD5665AC26BEE1C000ABD8D7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BD7AECC626C514C70068B53E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AECC926C5152D0068B53E /* View+ExpansiveRowStyle.swift */,
+				BD5665B326BEE50300ABD8D7 /* URLSession+JSONDecode.swift */,
+				BDB44FA526C0518700A91E40 /* Sequence+SortedKeyPath.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BD7AECC726C514ED0068B53E /* Buses */ = {
+			isa = PBXGroup;
+			children = (
+				BD5665A726BEE1BF00ABD8D7 /* BusesView.swift */,
+				BDF35E5D26C29D8B00413734 /* LocationsFilterList.swift */,
+				BD5665B926BEEAAC00ABD8D7 /* BusCell.swift */,
+				BD5665B526BEE65800ABD8D7 /* Bus.swift */,
+			);
+			path = Buses;
+			sourceTree = "<group>";
+		};
+		BD7AECC826C514F50068B53E /* My Ticket */ = {
+			isa = PBXGroup;
+			children = (
+				BD4D1D4B26C13DC300E08343 /* MyTicketView.swift */,
+				BD73285526C153AC0076F887 /* TicketView.swift */,
+				BD4D1D4D26C13DD900E08343 /* TicketInformation.swift */,
+			);
+			path = "My Ticket";
+			sourceTree = "<group>";
+		};
+		BD7AECCD26C5156B0068B53E /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AECCB26C515540068B53E /* CloseButton.swift */,
+				BD7AECCE26C515B70068B53E /* RoundedCornerRectangle.swift */,
+				BDB44FA726C05C8600A91E40 /* BorderedButtonToggleStyle.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,12 +212,15 @@
 				BD5665BA26BEEAAC00ABD8D7 /* BusCell.swift in Sources */,
 				BDBC860826C3C49A00F1C6F2 /* ContentView.swift in Sources */,
 				BD4D1D4C26C13DC300E08343 /* MyTicketView.swift in Sources */,
+				BD7AECCC26C515540068B53E /* CloseButton.swift in Sources */,
 				BDF35E5E26C29D8B00413734 /* LocationsFilterList.swift in Sources */,
 				BD5665B426BEE50300ABD8D7 /* URLSession+JSONDecode.swift in Sources */,
 				BDB44FA826C05C8600A91E40 /* BorderedButtonToggleStyle.swift in Sources */,
 				BD5665A826BEE1BF00ABD8D7 /* BusesView.swift in Sources */,
 				BD73285626C153AC0076F887 /* TicketView.swift in Sources */,
+				BD7AECCA26C5152D0068B53E /* View+ExpansiveRowStyle.swift in Sources */,
 				BD5665B626BEE65800ABD8D7 /* Bus.swift in Sources */,
+				BD7AECCF26C515B70068B53E /* RoundedCornerRectangle.swift in Sources */,
 				BD4D1D4E26C13DD900E08343 /* TicketInformation.swift in Sources */,
 				BD5665A626BEE1BF00ABD8D7 /* BusPlusApp.swift in Sources */,
 			);
