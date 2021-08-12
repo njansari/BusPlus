@@ -51,8 +51,8 @@ struct MyTicketView: View {
                 .textContentType(.name)
                 .submitLabel(.next)
                 .focused($field, equals: .name)
-                .listRowBackground(Color.accentColor.opacity(0.15))
         }
+        .listRowBackground(Color.accentColor.opacity(0.15))
     }
 
     private var referenceSection: some View {
@@ -60,8 +60,19 @@ struct MyTicketView: View {
             TextField("Reference Number", value: referenceNumber, format: .number, prompt: Text("12345"))
                 .keyboardType(.numberPad)
                 .focused($field, equals: .reference)
-                .listRowBackground(Color.accentColor.opacity(0.15))
         }
+        .listRowBackground(Color.accentColor.opacity(0.15))
+    }
+
+    private var kindSection: some View {
+        Picker("Kind", selection: $ticketInformation.kind) {
+            ForEach(TicketInformation.Kind.allCases, id: \.self) { kind in
+                Text(kind.rawValue.localizedCapitalized)
+            }
+        }
+        .pickerStyle(.inline)
+        .listRowBackground(Color.accentColor.opacity(0.15))
+        .listRowSeparatorTint(.accentColor)
     }
 
     private var viewTicketButton: some View {
@@ -95,9 +106,10 @@ struct MyTicketView: View {
 
     var body: some View {
         NavigationView {
-            Form {
+            List {
                 nameSection
                 referenceSection
+                kindSection
                 viewTicketButton
             }
             .onSubmit(fieldSubmitted)

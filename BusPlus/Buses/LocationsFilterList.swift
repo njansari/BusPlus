@@ -41,6 +41,7 @@ struct LocationsFilterList: View {
 
                         if locations.contains(location) {
                             Image(systemName: "checkmark")
+                                .font(.headline)
                         }
                     }
                 }

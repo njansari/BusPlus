@@ -32,7 +32,10 @@ struct TicketView: View {
     private var ticket: some View {
         VStack(spacing: 0) {
             Text(ticketInformation.name)
-                .font(.title2.bold())
+                .font(.title2.bold().lowercaseSmallCaps())
+
+            Text(ticketInformation.kindDescription)
+                .font(.title3.smallCaps())
 
             qrCode
                 .interpolation(.none)

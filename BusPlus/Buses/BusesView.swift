@@ -39,14 +39,6 @@ struct BusesView: View {
     private var filteredBuses: [Bus] {
         let searchFields: [KeyPath<Bus, String>] = [\.name, \.location, \.destination]
 
-        let sort: KeyPath<Bus, String> = {
-            switch sortOrder {
-                case .name: return \.name
-                case .passengers: return \.passengers.description
-                case .fuel: return \.fuel.description
-            }
-        }()
-
         let filtered = buses.filter { bus in
             let search: Bool = {
                 for field in searchFields {
@@ -73,7 +65,15 @@ struct BusesView: View {
             return search && favourites && locations
         }
 
-        return filtered.sorted(by: sort)
+        let sorted = filtered.sorted { lhb, rhb in
+            switch sortOrder {
+                case .name: return lhb.name < rhb.name
+                case .passengers: return lhb.passengers < rhb.passengers
+                case .fuel: return lhb.fuel < rhb.fuel
+            }
+        }
+
+        return sorted
     }
 
     private var allLocations: [String] {
