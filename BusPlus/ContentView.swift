@@ -21,6 +21,7 @@ struct ContentView: View {
 
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = backgroundColor
+        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.tintColor]
 
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
 
