@@ -12,17 +12,11 @@ struct BusesView: View {
         case name
         case passengers
         case fuel
-
-        var icon: String {
-            switch self {
-                case .name: return "textformat.abc"
-                case .passengers: return "person.2"
-                case .fuel: return "fuelpump"
-            }
-        }
     }
 
     @AppStorage("sortOrder") private var sortOrder: SortOrder = .name
+
+    @State private var sortDirection: [SortOrder: Bool] = [.name: true, .passengers: true, .fuel: true]
 
     @State private var buses: [Bus] = []
 
@@ -42,7 +36,7 @@ struct BusesView: View {
         let filtered = buses.filter { bus in
             let search: Bool = {
                 for field in searchFields {
-                    if bus[keyPath: field].localizedStandardContains(searchText) {
+                    if bus[keyPath: field].localizedCaseInsensitiveContains(searchText) {
                         return true
                     }
                 }
@@ -67,9 +61,9 @@ struct BusesView: View {
 
         let sorted = filtered.sorted { lhb, rhb in
             switch sortOrder {
-                case .name: return lhb.name < rhb.name
-                case .passengers: return lhb.passengers < rhb.passengers
-                case .fuel: return lhb.fuel < rhb.fuel
+                case .name: return directionSorted(lhb.name, rhb.name)
+                case .passengers: return directionSorted(lhb.passengers, rhb.passengers)
+                case .fuel: return directionSorted(lhb.fuel, rhb.fuel)
             }
         }
 
@@ -100,23 +94,33 @@ struct BusesView: View {
         }
     }
 
+    private var sortOrderDirection: Binding<SortOrder> {
+        Binding {
+            sortOrder
+        } set: { newValue in
+            if newValue == sortOrder {
+                sortDirection[newValue]?.toggle()
+            } else {
+                sortOrder = newValue
+                sortDirection[newValue] = true
+            }
+        }
+    }
+
     private var filterButtons: some View {
         HStack {
             Toggle("Favourites Only", isOn: $showFavouritesOnly.animation())
-                .toggleStyle(.borderedButton)
 
             Toggle(filterLocationsLabel, isOn: filterLocations.animation())
-                .toggleStyle(.borderedButton)
         }
+        .toggleStyle(.borderedButton)
         .expansiveListRowStyle()
     }
 
     private var sortOrderMenu: some View {
         Menu {
-            Picker("Sort Order", selection: $sortOrder.animation()) {
-                ForEach(SortOrder.allCases, id: \.self) { sort in
-                    Label(sort.rawValue.localizedCapitalized, systemImage: sort.icon)
-                }
+            Picker("Sort Order", selection: sortOrderDirection.animation()) {
+                ForEach(SortOrder.allCases, id: \.self, content: sortOrderLabel)
             }
         } label: {
             Label("Sort Order", systemImage: "arrow.up.arrow.down")
@@ -127,7 +131,6 @@ struct BusesView: View {
         ForEach(filteredBuses) { bus in
             Section {
                 BusCell(bus: bus)
-                    .foregroundColor(.primary)
                     .expansiveListRowStyle()
                     .swipeActions(edge: .leading) {
                         Button {
@@ -203,6 +206,26 @@ struct BusesView: View {
         }
 
         UserDefaults.standard.set(Array(favourites), forKey: "favourites")
+    }
+
+    private func directionSorted<T: Comparable>(_ lhs: T, _ rhs: T) -> Bool {
+        if sortDirection[sortOrder, default: true] {
+            return lhs < rhs
+        } else {
+            return lhs > rhs
+        }
+    }
+
+    @ViewBuilder private func sortOrderLabel(for order: SortOrder) -> some View {
+        if order == sortOrder {
+            let direction = sortDirection[order, default: true] ? "up" : "down"
+            let directionLabel = sortDirection[order, default: true] ? "ascending" : "descending"
+
+            Label(order.rawValue.localizedCapitalized, systemImage: "chevron.\(direction)")
+                .accessibilityLabel("Sorted \(directionLabel) by \(order.rawValue.localizedCapitalized)")
+        } else {
+            Text(order.rawValue.localizedCapitalized)
+        }
     }
 }
 

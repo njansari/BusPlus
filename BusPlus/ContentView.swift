@@ -21,7 +21,6 @@ struct ContentView: View {
 
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = backgroundColor
-        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.tintColor]
 
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
 
@@ -49,7 +48,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("My Ticket", systemImage: "qrcode")
                 }
-                .badge(ticketInformation.isValid ? .none : "!")
+                .badge(ticketInformation.isValid ? nil : "!")
         }
     }
 }

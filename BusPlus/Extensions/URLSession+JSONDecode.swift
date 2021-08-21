@@ -9,7 +9,7 @@ import Foundation
 
 extension URLSession {
     func decodeJSON<T: Decodable>(ofType type: T.Type = T.self, from url: URL) async throws -> T {
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let data = try await URLSession.shared.data(from: url).0
         let decoded = try JSONDecoder().decode(type, from: data)
 
         return decoded

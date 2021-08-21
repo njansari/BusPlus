@@ -33,7 +33,7 @@ struct BusCell: View {
             AsyncImage(url: bus.image, transaction: Transaction(animation: .default)) { phase in
                 switch phase {
                     case .empty: PlaceholderImage(systemName: "bus", color: bus.placeholderColor.opacity(0.5))
-                    case .success(let image): image.resizable().scaledToFit()
+                    case .success(let image): image.resizable().scaledToFit().accessibilityIgnoresInvertColors()
                     default: PlaceholderImage(systemName: "xmark", color: .red)
                 }
             }
@@ -58,7 +58,7 @@ struct BusCell: View {
                         .accessibilityLabel("Number of passengers: \(bus.passengers)")
 
                     Label(bus.fuel.formatted(.percent), systemImage: "fuelpump")
-                        .accessibilityLabel("Fuel at \(bus.fuel.formatted(.percent))")
+                        .accessibilityLabel("Fuel is at \(bus.fuel.formatted(.percent))")
                 }
             }
             .symbolRenderingMode(.hierarchical)
@@ -67,6 +67,7 @@ struct BusCell: View {
         .foregroundColor(.primary)
         .lineLimit(1)
         .minimumScaleFactor(0.01)
+        .accessibilityElement(children: .combine)
         .frame(height: frame)
     }
 }
